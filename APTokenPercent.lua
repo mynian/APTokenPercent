@@ -31,7 +31,7 @@ local appercent = 0
 		appercent = appower / maxpower
 		
 		--Add that shit to the tooltip
-		GameTooltip:AddLine("Artifact Power Percent: " .. appercent .. "%",1,1,1)
+		GameTooltip:AddLine("Artifact Power Percent: " .. string.format("%3.5f", appercent) .. "%",1,1,1)
 		
 	end
 
