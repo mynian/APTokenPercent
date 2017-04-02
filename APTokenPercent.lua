@@ -29,6 +29,7 @@ local appercent = 0
 		
 		--Determine the progress amount
 		appercent = appower / maxpower
+		appercent = appercent * 100
 		
 		--Add that shit to the tooltip
 		GameTooltip:AddLine("Artifact Power Percent: " .. string.format("%3.5f", appercent) .. "%",1,1,1)
