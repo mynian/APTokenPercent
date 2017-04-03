@@ -15,9 +15,23 @@ local appercent = 0
 			--If found loop again to find the amount
 			for i=1, self:NumLines() do
 				if(string.find(_G[self:GetName().."TextLeft"..i]:GetText(), _G["USE"])) then
-					appower = string.match(_G[self:GetName().."TextLeft"..i]:GetText(), "%d+%,?%.?%s?%d*");
-					appower = string.gsub(string.gsub(appower, "%,", ""), "%.", "");
-					break
+					--Check for "million"
+					if(string.find(_G[self:GetName().."TextLeft"..i]:GetText(), _G["SECOND_NUMBER"])) then
+						appower = string.match(_G[self:GetName().."TextLeft"..i]:GetText(), "%d+%,?%.?%s?%d*");
+						appower = string.gsub(string.gsub(appower, "%,", ""), "%.", "");
+						appower = tonumber(appower)
+							if appower >= 10 then
+								appower = appower * 100000
+								break
+							else
+								appower = appower * 1000000
+								break
+							end
+					else
+						appower = string.match(_G[self:GetName().."TextLeft"..i]:GetText(), "%d+%,?%.?%s?%d*");
+						appower = string.gsub(string.gsub(appower, "%,", ""), "%.", "");
+						break
+					end
 				end
 			end
 				
