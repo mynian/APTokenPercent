@@ -1,6 +1,12 @@
 --Scan the tooltip for the artifact power amount of the item
 local function ArtifactPowerScan(self)
 
+local HasArtifactEquip = HasArtifactEquipped()
+    
+    if not (HasArtifactEquip) then
+        return
+    end
+
 --Get points spent in equipped artifact
 local points = select(6, C_ArtifactUI.GetEquippedArtifactInfo())
 local tier = select(13, C_ArtifactUI.GetEquippedArtifactInfo())
