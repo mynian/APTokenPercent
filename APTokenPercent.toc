@@ -1,5 +1,5 @@
 ## Interface: 70205
 ## Title: APTokenPercent
 ## Notes: Adds a Percentage to AP Token item tooltips
-## Version: 1.3.5
+## Version: 1.3.6
 APTokenPercent.lua
