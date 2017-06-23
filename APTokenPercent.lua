@@ -24,18 +24,32 @@ local appercent = 0
 					--Check for "million"
 					if(string.find(_G[self:GetName().."TextLeft"..i]:GetText(), _G["SECOND_NUMBER"])) then
 						appower = string.match(_G[self:GetName().."TextLeft"..i]:GetText(), "%d+%,?%.?%s?%d*");
+						--[[DEBUG
+						print(appower .. " first")]]
 						appower = string.gsub(string.gsub(appower, "%,", ""), "%.", "");
+						--[[DEBUG
+						print(appower .. " second")]]
 						appower = tonumber(appower)
-							if appower >= 10 then
+						--[[DEBUG
+						print(appower .. " third")]]
+							if appower >= 100 then
 								appower = appower * 100000
+								--[[DEBUG
+								print(appower .. " fourth")]]
 								break
-							else
+							else 
 								appower = appower * 1000000
+								--[[DEBUG
+								print(appower .. " fifth")]]
 								break
 							end
 					else
 						appower = string.match(_G[self:GetName().."TextLeft"..i]:GetText(), "%d+%,?%.?%s?%d*");
+						--[[DEBUG
+						print(appower .. " sixth")]]
 						appower = string.gsub(string.gsub(appower, "%,", ""), "%.", "");
+						--[[DEBUG
+						print(appower .. "seventh")]]
 						break
 					end
 				end
@@ -53,6 +67,8 @@ local appercent = 0
 		
 		--Add that shit to the tooltip
 		GameTooltip:AddLine("Artifact Power Percent: " .. string.format("%3.5f", appercent) .. "%",1,1,1)
+		--[[DEBUG
+		print(appower .. " final")]]
 		
 	end
 
