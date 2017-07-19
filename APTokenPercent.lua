@@ -13,6 +13,7 @@ local tier = select(13, C_ArtifactUI.GetEquippedArtifactInfo())
 local maxpower = C_ArtifactUI.GetCostForPointAtRank(points,tier)
 local appower = 0
 local appercent = 0
+local puncheck
 
 	--Loop through the tooltip
 	for i=1, self:NumLines() do
@@ -24,8 +25,10 @@ local appercent = 0
 					--Check for "million"
 					if(string.find(_G[self:GetName().."TextLeft"..i]:GetText(), _G["SECOND_NUMBER"])) then
 						appower = string.match(_G[self:GetName().."TextLeft"..i]:GetText(), "%d+%,?%.?%s?%d*");
+						puncheck = string.match(_G[self:GetName().."TextLeft"..i]:GetText(), "%p$");
 						--[[DEBUG
-						print(appower .. " first")]]
+						print(appower .. " first")						
+						print(puncheck)]]
 						appower = string.gsub(string.gsub(appower, "%,", ""), "%.", "");
 						--[[DEBUG
 						print(appower .. " second")]]
@@ -33,23 +36,31 @@ local appercent = 0
 						--[[DEBUG
 						print(appower .. " third")]]
 							if appower >= 100 then
-								appower = appower * 100000
-								--[[DEBUG
-								print(appower .. " fourth")]]
-								break
+								if puncheck == "." then
+									appower = appower * 100000
+									--[[DEBUG
+									print(appower .. " fourth")]]
+									break
+								else
+									appower = appower * 1000000
+									--[[DEBUG
+									print(appower .. " fifth")]]
+									puncheck = nil
+									break
+								end
 							else 
 								appower = appower * 1000000
 								--[[DEBUG
-								print(appower .. " fifth")]]
+								print(appower .. " sixth")]]
 								break
 							end
 					else
 						appower = string.match(_G[self:GetName().."TextLeft"..i]:GetText(), "%d+%,?%.?%s?%d*");
 						--[[DEBUG
-						print(appower .. " sixth")]]
+						print(appower .. " seventh")]]
 						appower = string.gsub(string.gsub(appower, "%,", ""), "%.", "");
 						--[[DEBUG
-						print(appower .. "seventh")]]
+						print(appower .. "eighth")]]
 						break
 					end
 				end
@@ -68,9 +79,9 @@ local appercent = 0
 		--Add that shit to the tooltip
 		GameTooltip:AddLine("Artifact Power Percent: " .. string.format("%3.5f", appercent) .. "%",1,1,1)
 		--[[DEBUG
-		print(appower .. " final")]]
-		
+		print(appower .. " final")]]		
 	end
+
 
 	
 end
