@@ -28,6 +28,11 @@ local appercent = 0
 						appower = tonumber(appower)						
 						appower = appower * 1000000000
 						break
+					elseif(string.find(_G[self:GetName().."TextLeft"..i]:GetText(), _G["FOURTH_NUMBER"])) then	
+						appower = string.match(_G[self:GetName().."TextLeft"..i]:GetText(), "%d+%,?%.?%s?%d*");												
+						appower = tonumber(appower)						
+						appower = appower * 1000000000000
+						break	
 					else
 						appower = string.match(_G[self:GetName().."TextLeft"..i]:GetText(), "%d+%,?%.?%s?%d*");						
 						appower = string.gsub(string.gsub(appower, "%,", ""), "%.", "");						
